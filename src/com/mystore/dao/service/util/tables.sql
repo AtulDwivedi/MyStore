@@ -1,0 +1,1 @@
+create table Customer(customerId varchar2(20) NOT NULL PRIMARY KEY, customerName varchar2(50), gender varchar2(20), age varchar2(20), mobileNumber BIGINT, email varchar2(50), Address varchar2(200));
