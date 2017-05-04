@@ -20,7 +20,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		int retVal = 0;
 
 		try (Connection con = ConnectionProvider.getConnection();
-				PreparedStatement ps = con.prepareStatement("INSERT INTO CUSTOMER VALUES(?,?,?,?,?,?,?)")) {
+				PreparedStatement ps = con.prepareStatement("INSERT INTO STR_CUSTOMER VALUES(?,?,?,?,?,?,?)")) {
 			
 			ps.setString(1, customer.getCutomerId());
 			ps.setString(2, customer.getCustomerName());
@@ -43,7 +43,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		int retVal = 0;
 
 		try (Connection con = ConnectionProvider.getConnection();
-				PreparedStatement ps = con.prepareStatement("UPDATE CUSTOMER SET CUSTOMERNAME=?, GENDER=?, AGE=?, MOBILENUMBER=?, EMAIL=?, ADDRESS=? WHERE CUSTOMERID=?")) {
+				PreparedStatement ps = con.prepareStatement("UPDATE STR_CUSTOMER SET CUSTOMERNAME=?, GENDER=?, AGE=?, MOBILENUMBER=?, EMAIL=?, ADDRESS=? WHERE CUSTOMERID=?")) {
 			
 			ps.setString(1, customer.getCustomerName());
 			ps.setString(2, customer.getGender());
@@ -67,7 +67,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		int retVal = 0;
 
 		try (Connection con = ConnectionProvider.getConnection();
-				PreparedStatement ps = con.prepareStatement("DELETE FROM CUSTOMER WHERE CUSTOMERID = ?")) {
+				PreparedStatement ps = con.prepareStatement("DELETE FROM STR_CUSTOMER WHERE CUSTOMERID = ?")) {
 			ps.setString(1, customerId);
 			retVal = ps.executeUpdate();
 
@@ -83,7 +83,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		Customer cus = null;
 
 		try (Connection con = ConnectionProvider.getConnection();
-				PreparedStatement ps = con.prepareStatement("SELECT * FROM CUSTOMER WHERE CUSTOMERID = ?")) {
+				PreparedStatement ps = con.prepareStatement("SELECT * FROM STR_CUSTOMER WHERE CUSTOMERID = ?")) {
 			ps.setString(1, customerId);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
@@ -92,6 +92,11 @@ public class CustomerDaoImpl implements CustomerDao {
 				}
 				cus.setCutomerId(rs.getString(1));
 				cus.setCustomerName(rs.getString(2));
+				cus.setGender(rs.getString(3));
+				cus.setAge(rs.getInt(4));
+				cus.setMobileNumber(rs.getLong(5));
+				cus.setEmail(rs.getString(6));
+				cus.setAddress(rs.getString(7));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,14 +110,18 @@ public class CustomerDaoImpl implements CustomerDao {
 		List<Customer> customers = new ArrayList<Customer>();
 
 		try (Connection con = ConnectionProvider.getConnection();
-				PreparedStatement ps = con.prepareStatement("SELECT * FROM CUSTOMER")) {
+				PreparedStatement ps = con.prepareStatement("SELECT * FROM STR_CUSTOMER")) {
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
 				
 				Customer cus = new Customer();
 				cus.setCutomerId(rs.getString(1));
 				cus.setCustomerName(rs.getString(2));
-				
+				cus.setGender(rs.getString(3));
+				cus.setAge(rs.getInt(4));
+				cus.setMobileNumber(rs.getLong(5));
+				cus.setEmail(rs.getString(6));
+				cus.setAddress(rs.getString(7));
 				customers.add(cus);
 			}
 		} catch (Exception e) {

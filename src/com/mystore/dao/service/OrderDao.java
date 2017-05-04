@@ -8,7 +8,7 @@ public interface OrderDao {
 
 	int saveOrder(Order order);
 	int updateOrder(Order order);
-	int deleteOrder(String OrderId);
+	int deleteOrder(String orderId);
 	
 	Order getOrderByOrderId(String orderId);
 	List<Order> getOrders();

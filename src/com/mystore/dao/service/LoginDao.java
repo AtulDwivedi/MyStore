@@ -5,8 +5,8 @@ import com.mystore.model.Login;
 public interface LoginDao {
 	int saveLogin(Login login);
 	int updateLogin(Login login);
-	int deleteLogin(String userId);
+	int deleteLogin(String userName);
 	
 	boolean checkLogin(Login login);
-	String getUserTypeByUserId(String userId);
+	String getUserTypeByUserName(String userName);
 }
