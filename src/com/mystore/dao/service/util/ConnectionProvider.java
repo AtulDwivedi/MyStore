@@ -9,9 +9,10 @@ public class ConnectionProvider {
 	public static Connection getConnection() throws SQLException{
 		try {
 			if(con == null || con.isClosed()){
+				Class.forName("org.h2.Driver");
 				con = DriverManager.getConnection("jdbc:h2:~/test", "sa", "");
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return con;

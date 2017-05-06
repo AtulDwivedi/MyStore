@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebListener;
 
 import com.mystore.dao.service.SchemaDao;
 import com.mystore.dao.service.impl.SchemaDaoImpl;
+import com.mystore.dao.service.util.LoadProperty;
 
 /**
  * Application Lifecycle Listener implementation class MyStoreContextListener
@@ -39,16 +40,21 @@ public class MyStoreContextListener implements ServletContextListener {
     	String createTables = servletContext.getInitParameter("createTables");
     	String dropTables = servletContext.getInitParameter("dropTables");
     	
+    	String dbPropertiesFilepath = servletContext.getRealPath("WEB-INF//db//properties//db.properties");
+    	LoadProperty.load(dbPropertiesFilepath);
+    	
+    	String getTablesScriptPath = servletContext.getRealPath("WEB-INF//db//schema//tables.sql");
+    	
     	if("yes".equalsIgnoreCase(dropTables)){
     		System.out.println("Yes drop tables now!");
     		SchemaDao schemaDao = new SchemaDaoImpl();
-    		schemaDao.dropTables();
+    		schemaDao.dropTables(getTablesScriptPath);
     	}
     	
     	if("yEs".equalsIgnoreCase(createTables)){
     		System.out.println("Yes create tables now!");
     		SchemaDao schemaDao = new SchemaDaoImpl();
-    		schemaDao.createTables();
+    		schemaDao.createTables(getTablesScriptPath);
     	}
     }
 	

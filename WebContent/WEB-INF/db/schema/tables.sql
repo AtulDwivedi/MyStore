@@ -8,7 +8,7 @@ CREATE TABLE str_customer
      email        VARCHAR2(50),
      address      VARCHAR2(200)
   );
-
+/
 CREATE TABLE str_product
   (
      productid       VARCHAR2(20) NOT NULL PRIMARY KEY,
@@ -19,7 +19,7 @@ CREATE TABLE str_product
      quantityinstock INTEGER,
      price           DOUBLE
   );
-
+/
 CREATE TABLE str_order
   (
      orderid      VARCHAR2(20) NOT NULL PRIMARY KEY,
@@ -30,7 +30,7 @@ CREATE TABLE str_order
      dispatchdate DATE,
      status       VARCHAR2(20)
   );
-
+/
 CREATE TABLE str_orderdetail
   (
      orderdetailid   VARCHAR2(20) NOT NULL PRIMARY KEY,
@@ -43,10 +43,11 @@ CREATE TABLE str_orderdetail
      quantity        INTEGER,
      discount        DOUBLE
   );
-
+/
 CREATE TABLE str_login
   (
      username VARCHAR2(20) NOT NULL PRIMARY KEY,
      password VARCHAR2(50),
      usertype VARCHAR2(20)
   );
+  stop
