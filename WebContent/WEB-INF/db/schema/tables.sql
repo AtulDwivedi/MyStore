@@ -50,4 +50,5 @@ CREATE TABLE str_login
      password VARCHAR2(50),
      usertype VARCHAR2(20)
   );
+  /
   stop

@@ -23,7 +23,13 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class DBMetaData {
-
+	
+	/**
+	 * Fetching the list of table names from the database and
+	 * adding it into a list
+	 * 
+	 * @return
+	 */
 	public List<String> getTables() {
 
 		List<String> tables = new ArrayList<String>();
@@ -53,6 +59,14 @@ public class DBMetaData {
 		return tables;
 
 	}
+	
+	/**
+	 * Fetching the list of table names from the tables.sql and
+	 * adding it into a list.
+	 * 
+	 * @param path
+	 * @return tables
+	 */
 
 	public List<String> getApplicationTables(String path) {
 
@@ -83,8 +97,8 @@ public class DBMetaData {
 					break;
 
 				}
-
-				tables.add(query.split(" ")[2]);
+				String str1 = query.split(" ")[2].trim();
+				tables.add(str1);//create[0] table[1] tablename[2]
 
 			}
 
