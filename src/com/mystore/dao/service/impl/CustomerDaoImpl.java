@@ -18,7 +18,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public int saveCustomer(Customer customer) {
 		int retVal = 0;
-
+System.out.println(customer);
 		try (Connection con = ConnectionProvider.getConnection();
 				PreparedStatement ps = con.prepareStatement("INSERT INTO STR_CUSTOMER VALUES(?,?,?,?,?,?,?)")) {
 			
